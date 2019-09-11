@@ -12,7 +12,7 @@
     "images": "imagemin app/common/images --out-dir=dist/assets/images -p",
     "icons": "svgo -f app/common/icons && mkdirp dist/assets/images/icons && svg-sprite-generate -d app/common/icons -o dist/assets/images/icons/icons.svg",
     "copy": "mkdirp dist/assets/fonts && cp app/common/fonts/**/* dist/assets/fonts/",
-    "server": "browser-sync start --server --files 'dist/**/*.*'",
+    "server": "browser-sync start --server --files 'dist + **/*'",
     "build:css": "npm run styles && npm run autoprefixer",
     "build:images": "npm run images && npm run icons",
     "build": "parallelshell \"npm run build:css\" \"npm run scripts\" \"npm run build:images\" \"npm run templates\"",
@@ -22,7 +22,7 @@
     "watch:images": "onchange 'app/common/images/*.{png,jpg,jpeg,gif,svg,ico}' -- npm run build:images",
     "watch": "parallelshell \"npm run server\" \"npm run watch:templates\" \"npm run watch:css\" \"npm run watch:js\"",
     "start": "npm run build && npm run watch",
-		"production": "npm run clear && npm run build"
+    "production": "npm run clear && npm run build && npm run copy"
   },
   "repository": {
     "type": "git",
@@ -46,6 +46,7 @@
     "svg-sprite-generator": "0.0.7",
     "svgo": "^1.3.0",
     "uglify-js": "^3.6.0",
+    "underscore-cli": "^0.2.19",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8"
   },
@@ -53,3 +54,4 @@
     "rimraf": "^3.0.0"
   }
 }
+
