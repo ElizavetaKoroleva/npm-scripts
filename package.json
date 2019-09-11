@@ -15,12 +15,14 @@
     "server": "browser-sync start --server --files 'dist/**/*.*'",
     "build:css": "npm run styles && npm run autoprefixer",
     "build:images": "npm run images && npm run icons",
-    "build": "npm run build:css && npm run scripts && npm run build:images && npm run templates",
+    "build": "parallelshell \"npm run build:css\" \"npm run scripts\" \"npm run build:images\" \"npm run templates\"",
     "watch:templates": "onchange 'app/pages/*.pug' -- npm run templates",
     "watch:css": "onchange 'app/common/styles/*.scss' -- npm run build:css",
     "watch:js": "onchange 'app/common/scripts/*.js' -- npm run scripts",
     "watch:images": "onchange 'app/common/images/*.{png,jpg,jpeg,gif,svg,ico}' -- npm run build:images",
-    "watch": "parallelshell \"npm run server\" \"npm run watch:templates\" \"npm run watch:css\" \"npm run watch:js\""
+    "watch": "parallelshell \"npm run server\" \"npm run watch:templates\" \"npm run watch:css\" \"npm run watch:js\"",
+    "start": "npm run build && npm run watch",
+		"production": "npm run clear && npm run build"
   },
   "repository": {
     "type": "git",
