@@ -13,7 +13,7 @@
     "images": "imagemin app/common/images --out-dir=dist/assets/images -p",
     "icons": "svgo -f app/common/icons && mkdirp dist/assets/images/icons && svg-sprite-generate -d app/common/icons -o dist/assets/images/icons/icons.svg",
     "copy": "mkdirp dist/assets/fonts && cp app/common/fonts/**/* dist/assets/fonts/",
-    "server": "browser-sync start --server --files 'dist + **/*'",
+    "server": "browser-sync start --server \"dist\" --files \"./dist/**/*.*, ./dist/*.*\"",
     "build:js": "npm run scripts && npm run uglify",
     "build:css": "npm run styles && npm run autoprefixer",
     "build:images": "npm run images && npm run icons",
